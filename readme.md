@@ -3,6 +3,10 @@ MAL Rework is a chrome (And the new edge) extension. That tries to update the ol
 
 Built using [React](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/), with icons by [Material Design Icons](https://material.io/resources/icons/?style=baseline)
 
+**!! KNOWN ISSUES !!**
+Not being logged in will break the landing page.
+Username is always ThuverX (Yes this is a bug)
+
 
 ## Current working stuff
 
@@ -30,8 +34,6 @@ Currently working on:
 ### You could also build from the source, use **tsconfig.json** file for this
 
 ## Work in progress
-
-**Make sure you are logged in!**
 
 I'm not really actively working on this project. But if you find any bugs, please report them!
 
