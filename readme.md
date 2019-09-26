@@ -1,5 +1,5 @@
 # Mal Rework
-MAL Rework is a chrome (And the new edge) extension. That tries to update the old MAL website.
+MAL Rework is a chrome (And the new edge) extension. That tries to update the old MAL website. Making it more inline with current websites. And design standards.
 
 Built using [React](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/), with icons by [Material Design Icons](https://material.io/resources/icons/?style=baseline)
 
@@ -10,7 +10,7 @@ Built using [React](https://reactjs.org/) and [Typescript](https://www.typescrip
 * Anime page / Manga page
     * Main 90%
     * Status changing doesn't work as of yet
-* Use profile page 50%
+* User profile page 50%
 
 Currently working on:
 * Anime characters / Staff
