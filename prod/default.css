@@ -1,0 +1,1470 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+app {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+body {
+  font-family: 'Roboto', sans-serif !important;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+.backgroundinfo {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.backgroundinfo .title {
+  font-size: 18px;
+  margin-bottom: 7px;
+}
+.backgroundinfo .text {
+  margin-left: 2px;
+}
+nav {
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  width: 90%;
+  height: 30px;
+  z-index: 20;
+}
+nav .right {
+  float: right;
+}
+nav .username img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  float: right;
+  margin-left: 10px;
+}
+nav .home {
+  cursor: pointer;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  margin-right: 10px;
+  background: white;
+  float: left;
+  -webkit-mask: url(https://fonts.gstatic.com/s/i/materialicons/home/v1/24px.svg?download=true) center / 21px no-repeat;
+  transition: transform .2s;
+}
+nav .home:hover {
+  transform: scale(1.2);
+}
+nav > .button {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 30px;
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+}
+nav > .button:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  height: 3px;
+  width: 100%;
+  opacity: 0;
+  background: white;
+  transition: .2s;
+}
+nav > .button:hover:after {
+  bottom: 0;
+  opacity: 1;
+}
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+}
+@keyframes slideFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+}
+@keyframes slideLeft {
+  0% {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+}
+.page {
+  z-index: 20;
+  position: absolute;
+  left: 5%;
+  top: calc(5% + 50px);
+  width: 90%;
+  height: 60%;
+}
+.page .inner {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 90%;
+  margin-bottom: 60px;
+}
+.page .inner .leftSide {
+  animation: slideFromTop 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  display: inline-block;
+  float: left;
+  width: 225px;
+}
+.page .inner .leftSide .searchBar {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  margin-top: 7px;
+  line-height: 30px;
+  transition: .15s .05s;
+}
+.page .inner .leftSide .searchBar:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+.page .inner .leftSide .searchBar:hover input::placeholder {
+  color: black;
+  opacity: 0.8;
+}
+.page .inner .leftSide .searchBar input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  position: relative;
+  margin-left: 5%;
+  width: 90%;
+  height: 100%;
+  text-align: center;
+}
+.page .inner .leftSide .searchBar input::placeholder {
+  color: white;
+  opacity: 1;
+}
+.page .inner .leftSide .listButtons {
+  margin-top: 20px;
+}
+.page .inner .leftSide .listButtons > div {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  height: 30px;
+  text-align: center;
+  color: white;
+  line-height: 30px;
+  margin-bottom: 10px;
+  transition: .15s .05s;
+  cursor: pointer;
+}
+.page .inner .leftSide .listButtons > div:hover {
+  background: white;
+  color: black;
+}
+.page .inner .leftSide .scoreDisplay {
+  margin-top: 10px;
+  white-space: nowrap;
+  width: 225px;
+}
+.page .inner .leftSide .scoreDisplay.show .right {
+  animation: slideLeft .2s;
+}
+.page .inner .leftSide .scoreDisplay:not(.show) .right {
+  opacity: 0;
+}
+.page .inner .leftSide .scoreDisplay .score {
+  height: 50px;
+  font-size: 40px;
+  display: inline-block;
+  vertical-align: top;
+}
+.page .inner .leftSide .scoreDisplay .right {
+  padding-left: 6px;
+  display: inline-block;
+  height: 50px;
+  padding-top: 8px;
+  font-size: 15px;
+  line-height: 17px;
+}
+.page .inner .leftSide .scoreDisplay + .animeInfo {
+  margin-top: 0;
+}
+.page .inner .leftSide .animeInfo {
+  margin-top: 30px;
+  font-size: 14px;
+  line-height: 24px;
+}
+.page .inner .leftSide .animeInfo > div {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.page .inner .leftSide .animeImage {
+  width: 225px;
+  height: 319px;
+  border-radius: 2px;
+}
+.page .inner .leftSide .userImage {
+  width: 225px;
+  height: 225px;
+  border-radius: 2px;
+}
+.page .inner .rightSide {
+  animation: slideFromRight 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  animation-fill-mode: backwards;
+  margin-left: 40px;
+  float: left;
+  width: calc(100% - 265px);
+  display: inline-block;
+}
+.page .inner .rightSide .info {
+  overflow: hidden;
+  overflow-y: auto;
+}
+.page .inner .rightSide .info .titles .titleBig {
+  font-weight: 600;
+  font-size: 30px;
+}
+.page .inner .rightSide .info .titles .titleSmall {
+  font-size: 20px;
+}
+.page .inner .rightSide .info .titles .titleSmall .indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background: white;
+  margin-top: 6.2px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 3px;
+}
+.page .inner .rightSide .info .titles .titleSmall .indicator.online {
+  background: #56db3a;
+}
+.page .inner .rightSide .info .titles .titleSmall .indicator.offline {
+  background: #b12917;
+}
+.page .inner .rightSide .info .synopsis {
+  margin-top: 20px;
+}
+.page .inner .rightSide .data {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+  height: 200px;
+  width: 100%;
+  position: relative;
+}
+.page .inner .rightSide .data .animeData {
+  width: 50%;
+  height: 90px;
+}
+.page .inner .rightSide .data .dataBox {
+  margin-top: 12px;
+}
+.page .inner .rightSide .data .dataBox .title {
+  font-weight: bold;
+  margin: 3px;
+  display: inline-block;
+  white-space: nowrap;
+  margin-left: 2%;
+}
+.page .inner .rightSide .data .dataBox .title.right {
+  position: relative;
+  float: right;
+  margin-right: 2%;
+}
+.page .inner .rightSide .data .dataBox .title.right .days {
+  display: inline-block;
+}
+.page .inner .rightSide .data .dataBox .title.right .mean {
+  position: relative;
+  display: inline-block;
+  margin-left: 37px;
+}
+.page .inner .rightSide .data .dataBox .title.right .mean:after {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  height: 1px;
+  width: 15px;
+  background: white;
+}
+.page .inner .rightSide .data .dataBox .stack {
+  margin-top: 6px;
+  height: 30px;
+  width: 96%;
+  margin-left: 2%;
+  border-radius: 2px;
+}
+.page .inner .rightSide .data .dataBox .stack > div {
+  position: relative;
+  cursor: pointer;
+  height: 30px;
+  float: left;
+}
+.page .inner .rightSide .data .dataBox .stack > div .text {
+  text-align: right;
+  position: absolute;
+  white-space: nowrap;
+  right: 0;
+  top: 0;
+  padding-top: 13px;
+  padding-right: 5px;
+  border-right: 1px solid white;
+  opacity: 0;
+  transition: .2s;
+}
+.page .inner .rightSide .data .dataBox .stack > div:hover .text {
+  opacity: 1;
+  padding-top: 37px;
+}
+@keyframes spawnStatBar {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+}
+.page .inner .rightSide .data .dataBox .stack > div:nth-child(1) {
+  animation: spawnStatBar .3s;
+  animation-fill-mode: backwards;
+  z-index: 100;
+}
+.page .inner .rightSide .data .dataBox .stack > div:nth-child(2) {
+  animation: spawnStatBar .3s .1s;
+  animation-fill-mode: backwards;
+  z-index: 99;
+}
+.page .inner .rightSide .data .dataBox .stack > div:nth-child(3) {
+  animation: spawnStatBar .3s .2s;
+  animation-fill-mode: backwards;
+  z-index: 98;
+}
+.page .inner .rightSide .data .dataBox .stack > div:nth-child(4) {
+  animation: spawnStatBar .3s .3s;
+  animation-fill-mode: backwards;
+  z-index: 97;
+}
+.page .inner .rightSide .data .dataBox .stack > div:nth-child(5) {
+  animation: spawnStatBar .3s .4s;
+  animation-fill-mode: backwards;
+  z-index: 96;
+}
+.page .inner .rightSide .data .dataBox .stack > div.ONHOLD {
+  background: #e7b715;
+}
+.page .inner .rightSide .data .dataBox .stack > div.WATCHING {
+  background: #2db039;
+}
+.page .inner .rightSide .data .dataBox .stack > div.PLANNED {
+  background: #8f8f8f;
+}
+.page .inner .rightSide .data .dataBox .stack > div.COMPLETED {
+  background: #26448f;
+}
+.page .inner .rightSide .data .dataBox .stack > div.DROPPED {
+  background: #a12f31;
+}
+.page .inner .rightSide .data .dataBox .empty {
+  margin-left: calc(2% + 5px);
+}
+.page .inner .rightSide .data .mangaData {
+  width: 50%;
+  height: 90px;
+}
+.page .inner .rightSide .data .favData {
+  position: relative;
+  width: 50%;
+}
+.page .inner .rightSide .data .favData .relatedAnime {
+  margin-top: 0px;
+  border: none;
+  margin-left: 5px;
+}
+@keyframes drawFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+.page .inner .rightSide .data .favData .relatedAnime .item {
+  animation: drawFromTop .3s;
+  animation-fill-mode: backwards;
+}
+.page .inner .rightSide .data .favData .relatedAnime .item:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.page .inner .rightSide .data .favData .relatedAnime .item:nth-child(4) {
+  animation-delay: 0.24s;
+}
+.page .inner .rightSide .data .favData .relatedAnime .item:nth-child(3) {
+  animation-delay: 0.18s;
+}
+.page .inner .rightSide .data .favData .relatedAnime .item:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.page .inner .rightSide .data .favData .relatedAnime .item:nth-child(1) {
+  animation-delay: 0.06s;
+}
+.page .inner .rightSide .data .favData .relatedAnime .item .title {
+  font-weight: normal;
+  width: 140px;
+}
+.page .inner .rightSide .data .holder {
+  float: left;
+  display: inline-block;
+  overflow: hidden;
+  cursor: pointer;
+  width: 70px;
+  height: 100px;
+  position: relative;
+}
+.page .inner .rightSide .data .holder img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.page .inner .rightSide .data .holder:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, white 0%, transparent 50%);
+  background-position-y: -20%;
+  z-index: 21;
+  -webkit-clip-path: polygon(100% 0, 100% 50%, 0 0, 0 0);
+  clip-path: polygon(100% 0, 100% 50%, 0 0, 0 0);
+  transition: .15s .1s;
+  opacity: 0.1;
+}
+.page .inner .rightSide .data .holder:hover:after {
+  background-position-y: 50%;
+  -webkit-clip-path: polygon(100% 0, 100% 70%, 0 20%, 0 0);
+  clip-path: polygon(100% 0, 100% 70%, 0 20%, 0 0);
+  opacity: 0.3;
+  transform: scale(1.1);
+}
+.page .inner .rightSide .data .history {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  z-index: 120;
+}
+.page .inner .rightSide .data .history .anime {
+  z-index: 121;
+  width: 98%;
+  background: url() center / cover no-repeat;
+  height: 100px;
+  margin: 2%;
+  display: block;
+}
+.page .inner .rightSide .data .history .anime .info {
+  float: left;
+  display: inline-block;
+  margin-left: 6px;
+  width: calc(100% - 6px - 80px);
+  height: 100px;
+  position: relative;
+}
+.page .inner .rightSide .data .history .anime .info .score {
+  position: absolute;
+  right: 6px;
+  bottom: 2px;
+}
+.page .inner .rightSide .data .history .anime .info .date {
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+}
+.page .inner .rightSide .data .history .anime .info .animeTitle {
+  font-size: 17px;
+}
+.page .inner .rightSide .data .history .anime .info .completionBar {
+  margin-top: 9px;
+  position: relative;
+  width: calc(100% - 6px);
+  height: 30px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+@keyframes spawnCompBar {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+}
+.page .inner .rightSide .data .history .anime .info .completionBar .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 31px;
+  margin-left: 7px;
+}
+.page .inner .rightSide .data .history .anime .info .completionBar .part {
+  animation: spawnCompBar .4s;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 30px;
+}
+.page .inner .rightSide .data .history .anime .info .completionBar .part.ONHOLD {
+  background: #e7b715;
+}
+.page .inner .rightSide .data .history .anime .info .completionBar .part.WATCHING {
+  background: #2db039;
+}
+.page .inner .rightSide .data .history .anime .info .completionBar .part.PLANNED {
+  background: #8f8f8f;
+}
+.page .inner .rightSide .data .history .anime .info .completionBar .part.COMPLETED {
+  background: #26448f;
+}
+.page .inner .rightSide .data .history .anime .info .completionBar .part.DROPPED {
+  background: #a12f31;
+}
+.page .inner .rightSide .tabs {
+  margin-top: 8px;
+  padding-bottom: 8px;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.page .inner .rightSide .tabs .item {
+  position: relative;
+  padding: 5px;
+  margin-right: 2px;
+  display: inline-block;
+  transition: color .2s;
+  cursor: pointer;
+}
+.page .inner .rightSide .tabs .item:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transform: translateY(20px);
+  transition: .2s;
+  opacity: 0;
+  z-index: -1;
+}
+.page .inner .rightSide .tabs .item:hover,
+.page .inner .rightSide .tabs .item.selected {
+  color: black;
+}
+.page .inner .rightSide .tabs .item:hover:after,
+.page .inner .rightSide .tabs .item.selected:after {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.page .welcomeWrapper {
+  position: relative;
+  top: 8%;
+  right: 5%;
+  animation: slideFromRight 0.2s cubic-bezier(1, 0, 0, 1);
+}
+.page .welcomeWrapper .message {
+  float: right;
+  font-size: 50px;
+}
+.newAnime {
+  position: relative;
+  top: 1%;
+  left: 5%;
+  animation: slideFromRight 0.2s cubic-bezier(1, 0, 0, 1);
+}
+.newAnime .message {
+  float: left;
+  font-size: 50px;
+}
+.relatedAnime {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.relatedAnime > .title {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+.relatedAnime .item {
+  margin-left: 2px;
+  line-height: 25px;
+}
+.relatedAnime .item > div {
+  display: inline-block;
+}
+.relatedAnime .item .title {
+  white-space: nowrap;
+  position: relative;
+  width: 100px;
+}
+.relatedAnime .item .title.wide {
+  width: auto;
+  padding-right: 10px;
+}
+.relatedAnime .item .title:after {
+  content: '';
+  position: absolute;
+  top: 49%;
+  right: -20px;
+  width: 17px;
+  height: 1px;
+  background: white;
+}
+.relatedAnime .item .list {
+  text-align: justify;
+  margin-left: 24px;
+}
+.characters {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  float: left;
+  position: relative;
+  width: 100%;
+}
+.characters > .title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.characters .list {
+  float: left;
+  height: 175px;
+  transition: height .15s;
+  overflow: hidden;
+}
+.characters .list:hover {
+  height: 220px;
+}
+.characters .char {
+  z-index: 100px;
+  float: left;
+  display: inline-block;
+  filter: saturate(0.5);
+  transition: .2s;
+  width: 80px;
+  position: relative;
+}
+.characters .char:hover {
+  z-index: 300px;
+  width: 112.5px;
+  filter: saturate(1);
+}
+.characters .char:hover .text {
+  opacity: 1;
+  transform: translateX(0px);
+}
+.characters .char .text {
+  margin: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: .15s;
+  cursor: pointer;
+}
+.characters .char .holder {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.characters .char .holder img {
+  position: relative;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 112.5px;
+  height: 175px;
+}
+#link {
+  padding-left: 5px;
+  padding-right: 5px;
+  transition: 0.1s;
+}
+#link:hover {
+  background: white;
+  color: black;
+  cursor: pointer;
+}
+@keyframes spawnCard {
+  0% {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+}
+.cardlist {
+  width: 100%;
+}
+.cardlist.right {
+  float: right;
+}
+.cardlist.right .title,
+.cardlist.right .listHolder,
+.cardlist.right .list,
+.cardlist.right .card {
+  float: right;
+}
+.cardlist.right .listHolder {
+  margin-left: 1000px;
+}
+.cardlist:not(.right) {
+  float: left;
+}
+.cardlist:not(.right) .title,
+.cardlist:not(.right) .listHolder,
+.cardlist:not(.right) .list,
+.cardlist:not(.right) .card {
+  float: left;
+}
+.cardlist:not(.right) .listHolder {
+  margin-right: 1000px;
+  margin-left: -30px;
+}
+.cardlist:not(.right) .list {
+  margin-left: -30px;
+}
+.cardlist .title {
+  opacity: 0.7;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+.cardlist .listHolder {
+  height: 320px;
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-left: 40px;
+  margin-right: -30px;
+  overflow: hidden;
+  position: relative;
+}
+.cardlist .listHolder .button {
+  top: 110px;
+  width: 30px;
+  height: 50px;
+  background: white;
+  z-index: 22;
+  transition: transform .2s;
+  cursor: pointer;
+}
+.cardlist .listHolder .button:hover {
+  transform: scale(1.4);
+}
+.cardlist .listHolder .buttonLeft {
+  position: absolute;
+  left: -5px;
+  -webkit-mask: url(https://fonts.gstatic.com/s/i/materialicons/chevron_left/v1/24px.svg?download=true) center / contain no-repeat;
+}
+.cardlist .listHolder .buttonRight {
+  position: absolute;
+  right: -5px;
+  -webkit-mask: url(https://fonts.gstatic.com/s/i/materialicons/chevron_right/v1/24px.svg?download=true) center / contain no-repeat;
+}
+.cardlist .listHolder .list {
+  margin-right: -10px;
+  width: 1000%;
+}
+.cardlist .listHolder .list .card {
+  display: inline-block;
+  animation: spawnCard .2s;
+  animation-fill-mode: backwards;
+  position: relative;
+  width: 160px;
+  height: 220px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.cardlist .listHolder .list .card:nth-child(50) {
+  animation-delay: 2s;
+}
+.cardlist .listHolder .list .card:nth-child(49) {
+  animation-delay: 1.96s;
+}
+.cardlist .listHolder .list .card:nth-child(48) {
+  animation-delay: 1.92s;
+}
+.cardlist .listHolder .list .card:nth-child(47) {
+  animation-delay: 1.88s;
+}
+.cardlist .listHolder .list .card:nth-child(46) {
+  animation-delay: 1.84s;
+}
+.cardlist .listHolder .list .card:nth-child(45) {
+  animation-delay: 1.8s;
+}
+.cardlist .listHolder .list .card:nth-child(44) {
+  animation-delay: 1.76s;
+}
+.cardlist .listHolder .list .card:nth-child(43) {
+  animation-delay: 1.72s;
+}
+.cardlist .listHolder .list .card:nth-child(42) {
+  animation-delay: 1.68s;
+}
+.cardlist .listHolder .list .card:nth-child(41) {
+  animation-delay: 1.64s;
+}
+.cardlist .listHolder .list .card:nth-child(40) {
+  animation-delay: 1.6s;
+}
+.cardlist .listHolder .list .card:nth-child(39) {
+  animation-delay: 1.56s;
+}
+.cardlist .listHolder .list .card:nth-child(38) {
+  animation-delay: 1.52s;
+}
+.cardlist .listHolder .list .card:nth-child(37) {
+  animation-delay: 1.48s;
+}
+.cardlist .listHolder .list .card:nth-child(36) {
+  animation-delay: 1.44s;
+}
+.cardlist .listHolder .list .card:nth-child(35) {
+  animation-delay: 1.4s;
+}
+.cardlist .listHolder .list .card:nth-child(34) {
+  animation-delay: 1.36s;
+}
+.cardlist .listHolder .list .card:nth-child(33) {
+  animation-delay: 1.32s;
+}
+.cardlist .listHolder .list .card:nth-child(32) {
+  animation-delay: 1.28s;
+}
+.cardlist .listHolder .list .card:nth-child(31) {
+  animation-delay: 1.24s;
+}
+.cardlist .listHolder .list .card:nth-child(30) {
+  animation-delay: 1.2s;
+}
+.cardlist .listHolder .list .card:nth-child(29) {
+  animation-delay: 1.16s;
+}
+.cardlist .listHolder .list .card:nth-child(28) {
+  animation-delay: 1.12s;
+}
+.cardlist .listHolder .list .card:nth-child(27) {
+  animation-delay: 1.08s;
+}
+.cardlist .listHolder .list .card:nth-child(26) {
+  animation-delay: 1.04s;
+}
+.cardlist .listHolder .list .card:nth-child(25) {
+  animation-delay: 1s;
+}
+.cardlist .listHolder .list .card:nth-child(24) {
+  animation-delay: 0.96s;
+}
+.cardlist .listHolder .list .card:nth-child(23) {
+  animation-delay: 0.92s;
+}
+.cardlist .listHolder .list .card:nth-child(22) {
+  animation-delay: 0.88s;
+}
+.cardlist .listHolder .list .card:nth-child(21) {
+  animation-delay: 0.84s;
+}
+.cardlist .listHolder .list .card:nth-child(20) {
+  animation-delay: 0.8s;
+}
+.cardlist .listHolder .list .card:nth-child(19) {
+  animation-delay: 0.76s;
+}
+.cardlist .listHolder .list .card:nth-child(18) {
+  animation-delay: 0.72s;
+}
+.cardlist .listHolder .list .card:nth-child(17) {
+  animation-delay: 0.68s;
+}
+.cardlist .listHolder .list .card:nth-child(16) {
+  animation-delay: 0.64s;
+}
+.cardlist .listHolder .list .card:nth-child(15) {
+  animation-delay: 0.6s;
+}
+.cardlist .listHolder .list .card:nth-child(14) {
+  animation-delay: 0.56s;
+}
+.cardlist .listHolder .list .card:nth-child(13) {
+  animation-delay: 0.52s;
+}
+.cardlist .listHolder .list .card:nth-child(12) {
+  animation-delay: 0.48s;
+}
+.cardlist .listHolder .list .card:nth-child(11) {
+  animation-delay: 0.44s;
+}
+.cardlist .listHolder .list .card:nth-child(10) {
+  animation-delay: 0.4s;
+}
+.cardlist .listHolder .list .card:nth-child(9) {
+  animation-delay: 0.36s;
+}
+.cardlist .listHolder .list .card:nth-child(8) {
+  animation-delay: 0.32s;
+}
+.cardlist .listHolder .list .card:nth-child(7) {
+  animation-delay: 0.28s;
+}
+.cardlist .listHolder .list .card:nth-child(6) {
+  animation-delay: 0.24s;
+}
+.cardlist .listHolder .list .card:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.cardlist .listHolder .list .card:nth-child(4) {
+  animation-delay: 0.16s;
+}
+.cardlist .listHolder .list .card:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.cardlist .listHolder .list .card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.cardlist .listHolder .list .card:nth-child(1) {
+  animation-delay: 0.04s;
+}
+.cardlist .listHolder .list .card:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, white 0%, transparent 50%);
+  background-position-y: -20%;
+  z-index: 21;
+  -webkit-clip-path: polygon(100% 0, 100% 50%, 0 0, 0 0);
+  clip-path: polygon(100% 0, 100% 50%, 0 0, 0 0);
+  transition: .15s .1s;
+  opacity: 0.1;
+}
+.cardlist .listHolder .list .card:hover:after {
+  background-position-y: 50%;
+  -webkit-clip-path: polygon(100% 0, 100% 70%, 0 20%, 0 0);
+  clip-path: polygon(100% 0, 100% 70%, 0 20%, 0 0);
+  opacity: 0.3;
+  transform: scale(1.1);
+}
+.cardlist .listHolder .list .card:hover img {
+  transform: scale(1.1);
+}
+.cardlist .listHolder .list .card:hover .name {
+  transform: translateY(12px);
+}
+.cardlist .listHolder .list .card img {
+  background: white;
+  transition: 0.2s transform cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+  border-radius: 2px;
+}
+.cardlist .listHolder .list .card .name {
+  transition: 0.2s transform cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+  margin: 2px;
+}
+@keyframes spawnPopout {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+@keyframes closePopout {
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+[data-pin-log] {
+  display: none;
+}
+.popoutList {
+  position: absolute;
+  z-index: 300;
+  background: white;
+  color: black;
+  border-radius: 2px;
+  box-shadow: 21px 24px 37px -12px rgba(0, 0, 0, 0.3);
+  animation: spawnPopout 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.popoutList:after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -7px;
+  width: 14px;
+  height: 10px;
+  background: white;
+  content: '';
+  z-index: 20;
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.popoutList.fade {
+  animation: closePopout 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.popoutList .item {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 6px;
+  height: 25px;
+  line-height: 25px;
+  padding-left: 12px;
+  padding-right: 12px;
+  display: block;
+  transition: transform .15s;
+  cursor: pointer;
+  position: relative;
+}
+.popoutList .item .icon {
+  float: left;
+  height: 25px;
+  width: 25px;
+  background: black;
+  margin-right: 10px;
+}
+.popoutList .item .icon.cog {
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-mask: url(https://material.io/tools/icons/static/icons/baseline-settings-20px.svg) center / contain no-repeat;
+}
+.popoutList .item:hover {
+  transform: translateX(3px);
+}
+.popoutList .item:hover .cog {
+  transform: rotate(80deg);
+}
+.loadingScreen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 399;
+  opacity: 1;
+}
+.loadingScreen:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40vw;
+  height: 100%;
+  background: white;
+  -webkit-mask: url(https://image4.owler.com/logo/myanimelist_owler_20160226_213523_original.png) center / contain no-repeat;
+}
+.loadingScreen.done {
+  transition: .3s;
+  opacity: 0;
+  transform: scale(1.2);
+  pointer-events: none;
+}
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+::-webkit-scrollbar,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece {
+  background: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: none;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: white;
+  width: 8px;
+  border: none;
+  border-radius: 0px;
+}
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: url(https://cdn.myanimelist.net/images/anime/1286/99889l.jpg) center / 130% no-repeat;
+  background-color: black;
+  filter: blur(60px) brightness(0.35) saturate(2);
+  transition: opacity .3s;
+}
+.background.dark {
+  filter: blur(60px) brightness(0.2) saturate(1.5);
+}
+.background.in {
+  animation: fadeIn .5s;
+  animation-fill-mode: backwards;
+}
+.background.out {
+  z-index: 1;
+  opacity: 0;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+@keyframes flashOver {
+  0% {
+    box-shadow: 0px 0px 9px -6px #ffffff;
+  }
+  10% {
+    box-shadow: 0px 0px 9px -4px #ffffff;
+  }
+  20% {
+    box-shadow: 0px 0px 9px -6px #ffffff;
+  }
+  30% {
+    box-shadow: 0px 0px 9px -4px #ffffff;
+  }
+  40% {
+    box-shadow: 0px 0px 9px -6px #ffffff;
+  }
+}
+.hidden .flashOver {
+  animation: none !important;
+}
+.flashOver {
+  animation: flashOver 3s infinite linear;
+}
+.statusSelector .statusDropDown {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  text-align: center;
+  color: white;
+  line-height: 25px;
+  transition: height .3s,opacity .3s,overflow .3s,margin .3s;
+  cursor: pointer;
+  /*
+        .dropDown{
+            width:100%;
+            position: absolute;
+            top:0;
+            background: white;
+            color:black;
+            border-radius: 2px;
+            z-index:120;
+        }*/
+  margin-bottom: 15px;
+}
+.statusSelector .statusDropDown.hidden {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin: 0 !important;
+}
+.statusSelector .statusDropDown .dropDown {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 25px;
+  width: 100%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12.5px;
+  overflow: hidden;
+  transition: .15s .05s;
+  z-index: 120;
+}
+.statusSelector .statusDropDown .dropDown:hover {
+  background: white;
+  color: black;
+}
+.statusSelector .statusDropDown .dropDown.clicked {
+  line-height: 30px;
+  height: calc(30px * 6);
+  background: white;
+  color: black;
+  border-radius: 2px;
+}
+.statusSelector .statusDropDown .dropDown.clicked .item {
+  height: 30px;
+  transition: .15s;
+  position: relative;
+  /*
+                    &.ONHOLD:after{
+                        background:#e7b715;
+                    }
+                    &.WATCHING:after{
+                        background: #2db039;
+                    }
+                    &.PLANNED:after{
+                        background: #8f8f8f;
+                    }
+                    &.COMPLETED:after{
+                        background: #26448f;
+                    }
+                    &.DROPPED:after{
+                        background: #a12f31;
+                    }
+                    &.NONE:after{
+                        background: #ee664e;
+                    }*/
+}
+.statusSelector .statusDropDown .dropDown.clicked .item:hover {
+  transform: scale(1.05) translateY(2px);
+}
+.statusSelector .statusDropDown .dropDown.clicked .item:hover:after {
+  width: 100%;
+  opacity: 1;
+}
+.statusSelector .statusDropDown .dropDown.clicked .item:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 220%;
+  height: 100%;
+  z-index: -1;
+  -webkit-mask: -webkit-linear-gradient(30deg, transparent 30%, red 100%);
+  background: #c8c8c8;
+  transition: .15s;
+  opacity: 0;
+}
+.statusSelector .episodeButtons {
+  transition: all .3s;
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+}
+@keyframes spawnEpisodeButtons {
+  0% {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+  100% {
+    height: 25px;
+  }
+}
+.statusSelector .episodeButtons:not(.norefresh):not(.hidden) {
+  animation: spawnEpisodeButtons .3s .1s;
+  animation-fill-mode: backwards;
+  height: 25px;
+}
+.statusSelector .episodeButtons.hidden {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin: 0;
+}
+.statusSelector .episodeButtons .episodeSelector {
+  height: 25px;
+  line-height: 25px;
+  color: black;
+}
+.statusSelector .episodeButtons .episodeSelector.decrease {
+  height: 25px;
+  width: 25px;
+  text-align: left;
+  position: relative;
+}
+.statusSelector .episodeButtons .episodeSelector.decrease:not(.inactive) {
+  cursor: pointer;
+}
+.statusSelector .episodeButtons .episodeSelector.decrease:not(.inactive):hover:before {
+  opacity: 1;
+}
+.statusSelector .episodeButtons .episodeSelector.decrease:not(.inactive):hover:after {
+  background: black;
+  left: -2px;
+}
+.statusSelector .episodeButtons .episodeSelector.decrease:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 12.5px;
+  opacity: 0.05;
+  transition: .1s;
+}
+.statusSelector .episodeButtons .episodeSelector.decrease:not(.inactive):after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  -webkit-mask: url(https://fonts.gstatic.com/s/i/materialicons/chevron_left/v1/24px.svg?download=true) center / contain no-repeat;
+  transition: .1s;
+}
+.statusSelector .episodeButtons .episodeSelector.setvalue {
+  position: relative;
+  flex-grow: 1;
+  text-align: center;
+  width: 30px;
+}
+.statusSelector .episodeButtons .episodeSelector.setvalue .inner {
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 25px;
+  width: 100px;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border-radius: 12.5px;
+  transition: .1s;
+}
+.statusSelector .episodeButtons .episodeSelector.setvalue .inner input {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  line-height: 25px;
+  color: inherit;
+  font-family: inherit;
+  background: transparent;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: inherit;
+}
+.statusSelector .episodeButtons .episodeSelector.setvalue .inner:hover {
+  background: white;
+  color: black;
+}
+.statusSelector .episodeButtons .episodeSelector.increase {
+  height: 25px;
+  width: 25px;
+  text-align: right;
+  position: relative;
+}
+.statusSelector .episodeButtons .episodeSelector.increase:not(.inactive) {
+  cursor: pointer;
+}
+.statusSelector .episodeButtons .episodeSelector.increase:not(.inactive):hover:before {
+  opacity: 1;
+}
+.statusSelector .episodeButtons .episodeSelector.increase:not(.inactive):hover:after {
+  background: black;
+  left: 2px;
+}
+.statusSelector .episodeButtons .episodeSelector.increase:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 12.5px;
+  opacity: 0.05;
+  transition: .1s;
+}
+.statusSelector .episodeButtons .episodeSelector.increase:not(.inactive):after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  -webkit-mask: url(https://fonts.gstatic.com/s/i/materialicons/chevron_right/v1/24px.svg?download=true) center / contain no-repeat;
+  transition: .1s;
+}
+iframe {
+  z-index: 40;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+iframe.full {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3390;
+  display: block;
+  border: none;
+}
+@keyframes loadingBar {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 4000px;
+  }
+}
+.loadingBar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 5px;
+  background: white;
+  width: 0vw;
+  pointer-events: none;
+  z-index: 400;
+  transition: width .2s;
+  overflow: hidden;
+}
+.loadingBar:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(45deg, white 0px, #f0f0f0 20px);
+  animation: loadingBar 50s linear infinite;
+  z-index: 2;
+}
+.loadingBar.done {
+  animation: loadingBarDone .6s;
+  opacity: 0;
+}
+.loadingBar.half {
+  width: 70vw;
+}
+@keyframes loadingBarDone {
+  0% {
+    width: 70vw;
+    opacity: 1;
+  }
+  50% {
+    width: 100vw;
+    opacity: 1;
+  }
+  100% {
+    width: 100vw;
+    opacity: 0;
+  }
+}

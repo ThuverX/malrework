@@ -1,0 +1,17 @@
+{
+    "name": "malrework",
+    "version": "0.1.0",
+    "description": "A full rework of the My Anime List Website, using React",
+    "manifest_version": 2,
+    "permissions": ["*://myanimelist.net/*","*://www.myanimelist.net/*"],
+    "content_scripts": [
+        {
+            "matches": ["*://myanimelist.net/*","*://www.myanimelist.net/*"],
+            "js": ["react.production.min.js","react-dom.production.min.js","main.js"],
+            "run_at": "document_start"
+        }
+    ],
+    "web_accessible_resources": [
+        "default.css"
+    ]
+}

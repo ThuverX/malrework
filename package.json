@@ -1,0 +1,14 @@
+{
+    "name": "malrework",
+    "version": "0.1.0",
+    "main": "prod/main.js",
+    "dependencies": {
+        "@types/chrome": "0.0.87",
+        "@types/react": "^16.8.6",
+        "@types/react-dom": "^16.8.5",
+        "typescript": "^3.5.3"
+    },
+    "author": "ThuverX",
+    "license": "MIT",
+    "description": "A full rework of the My Anime List Website, using React"
+}

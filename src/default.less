@@ -1,0 +1,1383 @@
+//out:../prod/default.css
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+app{
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background: black;
+}
+
+.nthDelay(@i,@time) when (@i > 0){
+    &:nth-child(@{i}){
+        animation-delay:@i * @time;
+    }
+    .nthDelay(@i - 1,@time);
+}
+.nthDelayLast(@i,@time) when (@i > 0){
+    &:nth-last-child(@{i}){
+        animation-delay:@i * @time;
+    }
+    .nthDelayLast(@i - 1,@time);
+}
+
+body{
+    font-family: 'Roboto', sans-serif !important;
+    background: black;
+    color:white;
+    overflow-x: hidden;
+}
+
+.backgroundinfo{
+    margin-top:20px;
+    padding-bottom:20px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    .title{
+        font-size:18px;
+        margin-bottom:7px;
+    }
+    .text{
+        margin-left:2px;
+    }
+}
+
+nav{
+    position: absolute;
+    left:5%;
+    top:5%;
+    width:90%;
+    height:30px;
+    z-index:20;
+    .right{
+        float:right;
+    }
+    .username{
+        img{
+            width:30px;
+            height:30px;
+            border-radius: 100%;
+            float:right;
+            margin-left:10px;
+        }
+    }
+    .home{
+        cursor: pointer;
+        display: inline-block;
+        width:30px;
+        height:30px;
+        padding:10px;
+        margin-right:10px;
+        background: white;
+        float:left;
+        -webkit-mask:url(https://fonts.gstatic.com/s/i/materialicons/home/v1/24px.svg?download=true) center/21px no-repeat;
+        transition: transform .2s;
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+    & > .button{
+        display: inline-block;
+        font-size:20px;
+        line-height:30px;
+        padding:10px;
+        margin-right:10px;
+        cursor: pointer;
+        position: relative;
+        &:after{
+            content:'';
+            position: absolute;
+            left:50%;
+            transform: translateX(-50%);
+            bottom:-10px;
+            height:3px;
+            width:100%;
+            opacity: 0;
+            background: white;
+            transition: .2s;
+        }
+        &:hover:after{
+            bottom:0;
+            opacity: 1;
+        }
+    }
+}
+
+
+@keyframes slideFromRight{
+    0%{
+        transform: translateX(20%);
+        opacity: 0;
+    }                
+}
+
+@keyframes slideFromTop{
+    0%{
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+}
+
+@keyframes slideLeft{
+    0%{
+        transform: translateX(-10%);
+        opacity: 0;
+    }
+}
+
+.page{
+    z-index:20;
+    position: absolute;
+    left:5%;
+    top:~"calc(5% + 50px)";
+    width:90%;
+    height:60%;
+    .inner{
+        position: absolute;
+        top:10%;
+        left:5%;
+        width:90%;
+        margin-bottom:60px;
+
+        .leftSide{
+            animation: slideFromTop .25s cubic-bezier(0.19, 1, 0.22, 1);
+            display: inline-block;
+            float:left;
+            width:225px;
+
+            .searchBar{
+                position: relative;
+                width: 100%;
+                height:30px;
+                background: rgba(255,255,255,0.3);
+                border-radius: 15px;
+                margin-top:7px;
+                line-height:30px;
+
+                transition: .15s .05s;
+
+                &:hover{
+                    background:rgba(255,255,255,0.8);
+                    input::placeholder{
+                        color:black;
+                        opacity: 0.8;
+                    }
+                }
+
+                input{
+                    border:none;
+                    background: transparent;
+                    outline: none;
+                    font-family: inherit;
+                    font-size: inherit;
+                    position: relative;
+                    margin-left:5%;
+                    width:90%;
+                    height:100%;
+                    text-align: center;
+                    &::placeholder{
+                        color:white;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .listButtons{
+                margin-top:20px;
+                & > div{
+                    background: rgba(255,255,255,0.08);
+                    border-radius: 15px;
+                    height:30px;
+                    text-align: center;
+                    color:white;
+                    line-height:30px;
+                    margin-bottom:10px;
+                    transition: .15s .05s;
+                    cursor: pointer;
+                    &:hover{
+                        background: white;
+                        color:black;
+                    }
+                }
+            }
+            .scoreDisplay{
+                margin-top:10px;
+                white-space: nowrap;
+                width:225px;
+                &.show{
+                    .right{
+                        animation: slideLeft .2s;
+                    }
+                }
+                &:not(.show){
+                    .right{
+                        opacity:0;
+                    }
+                }
+                .score{
+                    height:50px;
+                    font-size:40px;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                .right{
+                    padding-left:6px;
+                    display: inline-block;
+                    height:50px;
+                    padding-top:8px;
+                    font-size:15px;
+                    line-height:17px;
+                }
+                & + .animeInfo{
+                    margin-top:0;
+                }
+            }
+            .animeInfo{
+                margin-top:30px;
+                font-size:14px;
+                line-height:24px;
+                & > div{
+                    border-bottom:1px solid rgba(255,255,255,0.1);
+                }
+            }
+            .animeImage{
+                width:225px;
+                height:319px;
+                border-radius: 2px;
+            }
+            .userImage{
+                width:225px;
+                height:225px;
+                border-radius: 2px;
+            }
+        }
+        .rightSide{
+            animation: slideFromRight .25s cubic-bezier(0.19, 1, 0.22, 1);
+            animation-fill-mode: backwards;
+            margin-left:40px;
+            float:left;
+            width:~"calc(100% - 265px)";
+            display: inline-block;
+
+            .info{
+                overflow: hidden;
+                overflow-y: auto;
+                .titles{
+                    .titleBig{
+                        font-weight: 600;
+                        font-size:30px;
+                    }
+                    .titleSmall{
+                        font-size:20px;
+                        .indicator{
+                            width:12px;
+                            height:12px;
+                            border-radius: 100%;
+                            background: white;
+                            margin-top:6.2px;
+                            float:left;
+                            margin-right:10px;
+                            margin-left:3px;
+                            &.online{
+                                background: #56db3a;
+                            }
+                            &.offline{
+                                background: #b12917;
+                            }
+                        }
+                    }
+                }
+                .synopsis{
+                    margin-top:20px;
+                }
+            }
+            .data{
+                border-top:1px solid rgba(255,255,255,0.1);
+                margin-top:20px;
+                height:200px;
+                width:100%;
+                position: relative;
+                .animeData{
+                    width:50%;
+                    height:90px;
+                }
+                .dataBox{
+                    margin-top:12px;
+                    .title{
+                        font-weight: bold;
+                        margin:3px;
+                        display: inline-block;
+                        white-space: nowrap;
+                        margin-left:2%;
+                        &.right{
+                            position: relative;
+                            float:right;
+                            margin-right:2%;
+                            .days{
+                                display: inline-block;
+                            }
+                            .mean{
+                                position: relative;
+                                display: inline-block;
+                                margin-left:37px;
+                                &:after{
+                                    content:'';
+                                    position: absolute;
+                                    left:-28px;
+                                    top:50%;
+                                    height:1px;
+                                    width:15px;
+                                    background: white;
+                                }
+                            }
+                        }
+                    }
+                    .stack{
+                        margin-top:6px;
+                        height:30px;
+                        width:96%;
+                        margin-left:2%;
+                        border-radius: 2px;
+                        & > div{
+                            position: relative;
+                            cursor: pointer;
+                            .text{
+                                text-align: right;
+                                position: absolute;
+                                white-space: nowrap;
+                                right:0;
+                                top:0;
+                                padding-top:13px;
+                                padding-right:5px;
+                                border-right:1px solid white;
+                                opacity: 0;
+                                transition: .2s;
+                            }
+                            &:hover{
+                                .text{
+                                    opacity: 1;
+                                    padding-top:37px;
+                                }
+                            }
+                            height:30px;
+                            float:left;
+                            @keyframes spawnStatBar{
+                                0%{
+                                    width:0%;
+                                    opacity:0;
+                                }
+                            }
+                            &:nth-child(1){
+                                animation: spawnStatBar .3s;
+                                animation-fill-mode: backwards;
+                                z-index:100;
+                            }
+                            &:nth-child(2){
+                                animation: spawnStatBar .3s .1s;
+                                animation-fill-mode: backwards;
+                                z-index:99;
+                            }
+                            &:nth-child(3){
+                                animation: spawnStatBar .3s .2s;
+                                animation-fill-mode: backwards;
+                                z-index:98;
+                            }
+                            &:nth-child(4){
+                                animation: spawnStatBar .3s .3s;
+                                animation-fill-mode: backwards;
+                                z-index:97;
+                            }
+                            &:nth-child(5){
+                                animation: spawnStatBar .3s .4s;
+                                animation-fill-mode: backwards;
+                                z-index:96;
+                            }
+                            &.ONHOLD{
+                                background:#e7b715;
+                            }
+                            &.WATCHING{
+                                background: #2db039;
+                            }
+                            &.PLANNED{
+                                background: #8f8f8f;
+                            }
+                            &.COMPLETED{
+                                background: #26448f;
+                            }
+                            &.DROPPED{
+                                background: #a12f31;
+                            }
+                        }
+                    }
+                    .empty{
+                        margin-left:~"calc(2% + 5px)";
+                    }
+                }
+                .mangaData{
+                    width:50%;
+                    height:90px;
+                }
+                .favData{
+                    position: relative;
+                    width:50%;
+                    .relatedAnime{
+                        @keyframes drawFromTop{
+                            0%{
+                                opacity: 0;
+                                transform: translateY(-10px);
+                            }
+                        }
+                        margin-top:0px;
+                        border:none;
+                        margin-left:5px;
+                        .item{
+                            .nthDelay(5,0.06s);
+                            animation: drawFromTop .3s;
+                            animation-fill-mode: backwards;
+                            .title{
+                                font-weight: normal;
+                                width:140px;
+                            }
+                        }
+                    }
+                }
+                .holder{
+                    float:left;
+                    display: inline-block;
+                    overflow: hidden;
+                    cursor: pointer;
+                    width:70px;
+                    height:100px;
+                    position: relative;
+                    img{
+                        position: absolute;
+                        left:0;
+                        top:0;
+                        width:100%;
+                        height:100%;
+                    }
+                    &:after{
+                        content:'';
+                        position: absolute;
+                        top:0;
+                        right:0;
+                        width:100%;
+                        height:100%;
+                        background: linear-gradient(to bottom,white 0%,transparent 50%);
+                        background-position-y: -20%;
+                        z-index:21;
+                        -webkit-clip-path: polygon(100% 0, 100% 50%, 0 0, 0 0);
+                        clip-path: polygon(100% 0, 100% 50%, 0 0, 0 0);
+                        transition: .15s .1s;
+                        opacity: 0.1;
+                    }
+                    &:hover:after{
+                        background-position-y: 50%;
+                        -webkit-clip-path: polygon(100% 0, 100% 70%, 0 20%, 0 0);
+                        clip-path: polygon(100% 0, 100% 70%, 0 20%, 0 0);
+                        opacity: 0.3;
+                        transform: scale(1.1);
+                    }
+                }
+                .history{
+                    position: absolute;
+                    right:0;
+                    top:0;
+                    width:50%;
+                    overflow: hidden;
+                    z-index:120;
+                    .anime{
+                        z-index:121;
+                        width:98%;
+                        background: url() center/cover no-repeat;
+                        height:100px;
+                        margin:2%;
+                        display: block;
+                        .info{
+                            float:left;
+                            display: inline-block;
+                            margin-left:6px;
+                            width:~"calc(100% - 6px - 80px)";
+                            height:100px;
+                            position: relative;
+                            .score{
+                                position: absolute;
+                                right:6px;
+                                bottom:2px;
+                            }
+                            .date{
+                                position: absolute;
+                                left:0;
+                                bottom:2px;
+                            }
+                            .animeTitle{
+                                font-size:17px;
+                            }
+                            .completionBar{
+                                @keyframes spawnCompBar{
+                                    0%{
+                                        opacity: 0;
+                                        width:0;
+                                    }
+                                }
+                                margin-top:9px;
+                                position: relative;
+                                width:~"calc(100% - 6px)";
+                                height:30px;
+                                background: rgba(0,0,0,0.1);
+                                border-radius: 2px;
+                                .overlay{
+                                    position: absolute;
+                                    left:0;
+                                    top:0;
+                                    line-height:31px;
+                                    margin-left:7px;
+                                }
+                                .part{
+                                    animation: spawnCompBar .4s;
+                                    position: absolute;
+                                    left:0;
+                                    top:0;
+                                    height:30px;
+                                    &.ONHOLD{
+                                        background:#e7b715;
+                                    }
+                                    &.WATCHING{
+                                        background: #2db039;
+                                    }
+                                    &.PLANNED{
+                                        background: #8f8f8f;
+                                    }
+                                    &.COMPLETED{
+                                        background: #26448f;
+                                    }
+                                    &.DROPPED{
+                                        background: #a12f31;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .tabs{
+                margin-top:8px;
+                padding-bottom:8px;
+                font-size:15px;
+                border-bottom:1px solid rgba(255,255,255,0.1);
+                overflow: hidden;
+                .item{
+                    position: relative;
+                    padding:5px;
+                    margin-right:2px;
+                    display: inline-block;
+                    transition: color .2s;
+                    cursor: pointer;
+                    &:after{
+                        content:'';
+                        position: absolute;
+                        left:0;
+                        top:0;
+                        width:100%;
+                        height:100%;
+                        background: white;
+                        transform: translateY(20px);
+                        transition: .2s;
+                        opacity: 0;
+                        z-index:-1;
+                    }
+                    &:hover,&.selected{
+                        color:black;
+                        &:after{
+                            transform: translateY(0px);
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    .welcomeWrapper{
+        position: relative;
+        top:8%;
+        right:5%;
+        animation: slideFromRight .2s cubic-bezier(1,0,0,1);
+        .message{
+            float:right;
+            font-size:50px;
+        }
+    }
+}
+
+.newAnime{
+    position: relative;
+    top:1%;
+    left:5%;
+    animation: slideFromRight .2s cubic-bezier(1,0,0,1);
+    .message{
+        float:left;
+        font-size:50px;
+    }
+}
+
+.relatedAnime{
+    margin-top:20px;
+    & > .title{
+        font-size:18px;
+        margin-bottom:4px;
+    }
+    padding-bottom:20px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    .item{
+        margin-left:2px;
+        & > div{
+            display: inline-block;
+        }
+        line-height:25px;
+        .title{
+            &.wide{
+                width:auto;
+                padding-right:10px;
+            }
+            white-space: nowrap;
+            position: relative;
+            &:after{
+                content:'';
+                position: absolute;
+                top:49%;
+                right:-20px;
+                width:17px;
+                height:1px;
+                background: white;
+            }
+            width:100px;
+        }
+        .list{
+            text-align: justify;
+            margin-left:24px;
+        }
+    }
+}
+
+.characters{
+    margin-top:20px;
+    & > .title{
+        font-size:18px;
+        margin-bottom:10px;
+    }
+    padding-bottom:20px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    float:left;
+    position: relative;
+    width:100%;
+    .list{
+        float:left;
+        height:175px;
+        transition: height .15s;
+        &:hover{
+            height:220px;
+        }
+        overflow: hidden;
+    }
+    .char{
+        z-index:100px;
+        float:left;
+        position: relative;
+        display: inline-block;
+        filter:saturate(0.5);
+        transition: .2s;
+        &:hover{
+            z-index:300px;
+            width:112.5px;
+            filter:saturate(1);
+            .text{
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+        width:80px;
+        position: relative;
+        .text{
+            margin:5px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: .15s;
+            cursor: pointer;
+        }
+        .holder{
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            img{
+                position: relative;
+                left:50%;
+                top:0;
+                transform: translateX(-50%);
+                width:112.5px;
+                height:175px;
+            }
+        }
+    }
+}
+
+#link{
+    padding-left:5px;
+    padding-right:5px;
+    transition: 0.1s;
+    &:hover{
+        background: white;
+        color:black;
+        cursor: pointer;
+    }
+}
+
+@keyframes spawnCard{
+    0%{
+        opacity: 0;
+        transform: translateX(-10%);
+    }
+}
+
+.cardlist{
+    width:100%;
+    &.right{
+        float:right;
+        .title,.listHolder,.list,.card{
+            float:right;
+        }
+        .listHolder{
+            margin-left:1000px;
+        }
+    }
+    &:not(.right){
+        float:left;
+        .title,.listHolder,.list,.card{
+            float:left;
+        }
+        .listHolder{
+            margin-right:1000px;
+            margin-left:-30px;
+        }
+        .list{
+            margin-left:-30px;
+        }
+    }
+    .title{
+        opacity: 0.7;
+        white-space: nowrap;
+        margin-bottom:10px;
+    }
+    .listHolder{
+        height:320px;
+        padding-top:20px;
+        padding-right:40px;
+        padding-left:40px;
+        margin-right:-30px;
+        overflow: hidden;
+        position: relative;
+
+        .button{
+            top:110px;
+            width:30px;
+            height:50px;
+            background: white;
+            z-index:22;
+            &:hover{
+                transform: scale(1.4);
+            }
+            transition: transform .2s;
+            cursor: pointer;
+        }
+        .buttonLeft{
+            position: absolute;
+            left:-5px;
+            -webkit-mask:url(https://fonts.gstatic.com/s/i/materialicons/chevron_left/v1/24px.svg?download=true) center/contain no-repeat;
+        }
+
+        .buttonRight{
+            position: absolute;
+            right:-5px;
+            -webkit-mask:url(https://fonts.gstatic.com/s/i/materialicons/chevron_right/v1/24px.svg?download=true) center/contain no-repeat;
+        }
+        .list{
+            margin-right:-10px;
+            width:1000%;
+            .card{
+                display: inline-block;
+                .nthDelay(50,0.04s);
+                animation: spawnCard .2s;
+                animation-fill-mode: backwards;
+                position: relative;
+                &:after{
+                    content:'';
+                    position: absolute;
+                    top:0;
+                    right:0;
+                    width:100%;
+                    height:100%;
+                    background: linear-gradient(to bottom,white 0%,transparent 50%);
+                    background-position-y: -20%;
+                    z-index:21;
+                    -webkit-clip-path: polygon(100% 0, 100% 50%, 0 0, 0 0);
+                    clip-path: polygon(100% 0, 100% 50%, 0 0, 0 0);
+                    transition: .15s .1s;
+                    opacity: 0.1;
+                }
+                width:160px;
+                height:220px;
+                margin-left:20px;
+                cursor: pointer;
+                &:hover{
+                    &:after{
+                        background-position-y: 50%;
+                        -webkit-clip-path: polygon(100% 0, 100% 70%, 0 20%, 0 0);
+                        clip-path: polygon(100% 0, 100% 70%, 0 20%, 0 0);
+                        opacity: 0.3;
+                        transform: scale(1.1);
+                    }
+                    img{
+                        transform: scale(1.1);
+                    }
+                    .name{
+                        transform: translateY(12px);
+                    }
+                }
+                img{
+                    background: white;
+                    transition: .2s transform cubic-bezier(0.19, 1, 0.22, 1) .1s;
+                    border-radius: 2px;
+                }
+                .name{
+                    transition: .2s transform cubic-bezier(0.19, 1, 0.22, 1) .1s;
+                    margin:2px;
+                }
+            }
+        }
+    }
+}
+
+@keyframes spawnPopout{
+    0%{
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}
+
+@keyframes closePopout{
+    100%{
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}
+
+[data-pin-log]{
+    display: none;
+}
+
+
+.popoutList{
+    position: absolute;
+    z-index:300;
+    background: white;
+    color:black;
+    border-radius: 2px;
+    box-shadow: 21px 24px 37px -12px rgba(0,0,0,0.3);
+    animation: spawnPopout .4s cubic-bezier(0.19, 1, 0.22, 1);
+    &:after{
+        position: absolute;
+        left:50%;
+        transform: translateX(-50%);
+        top:-7px;
+        width:14px;
+        height:10px;
+        background: white;
+        content:'';
+        z-index:20;
+        -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+    &.fade{
+        animation: closePopout .3s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .item{
+        border-top:1px solid rgba(0,0,0,0.1);
+        padding:6px;
+        height:25px;
+        line-height:25px;
+        padding-left:12px;
+        padding-right:12px;
+        display: block;
+        transition: transform .15s;
+        cursor: pointer;
+        position: relative;
+        .icon{
+            float:left;
+            height:25px;
+            width:25px;
+            background: black;
+            margin-right:10px;
+            &.cog{
+                transition: transform .5s cubic-bezier(0.19, 1, 0.22, 1);
+                -webkit-mask:url(https://material.io/tools/icons/static/icons/baseline-settings-20px.svg) center/contain no-repeat;
+            }
+        }
+        &:hover{
+            transform: translateX(3px);
+            .cog{
+                transform: rotate(80deg);
+            }
+        }
+    }
+}
+
+.loadingScreen{
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background: black;
+    z-index:399;
+    opacity: 1;
+    &:after{
+        content:'';
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+        width:40vw;
+        height:100%;
+        background: white;
+        -webkit-mask:url(https://image4.owler.com/logo/myanimelist_owler_20160226_213523_original.png) center/contain no-repeat;
+    }
+    &.done{
+        transition: .3s;
+        opacity: 0;
+        transform: scale(1.2);
+        pointer-events: none;
+    }
+}
+
+@keyframes fadeOut{
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    width:8px;
+}
+::-webkit-scrollbar-thumb {
+    background: white;
+    width:8px;
+    border:none;
+    border-radius: 0px;
+}
+
+.background{
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index:2;
+    background: url(https://cdn.myanimelist.net/images/anime/1286/99889l.jpg) center/130% no-repeat;
+    background-color:black; 
+    filter:blur(60px) brightness(0.35) saturate(2);
+    &.dark{
+        filter:blur(60px) brightness(0.20) saturate(1.5);
+    }
+    &.in{
+        animation: fadeIn .5s;
+        animation-fill-mode: backwards;
+    }
+    transition: opacity .3s;
+    &.out{
+        z-index:1;
+        opacity: 0;
+    }
+}
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+ 
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+@keyframes flashOver{
+    0%{
+        box-shadow: 0px 0px 9px -6px rgba(255,255,255,1);
+    }
+    10%{
+        box-shadow: 0px 0px 9px -4px rgba(255,255,255,1);
+    }
+    20%{
+        box-shadow: 0px 0px 9px -6px rgba(255,255,255,1);
+    }
+    30%{
+        box-shadow: 0px 0px 9px -4px rgba(255,255,255,1);
+    }
+    40%{
+        box-shadow: 0px 0px 9px -6px rgba(255,255,255,1);
+    }
+}
+.hidden .flashOver{
+    animation: none !important;
+}
+
+.flashOver{
+    animation: flashOver 3s infinite linear;
+}
+
+
+.statusSelector{
+    .statusDropDown{
+        position: relative;
+        width:100%;
+        height:10px;
+        text-align: center;
+        color:white;
+        line-height:25px;
+        transition: height .3s,opacity .3s,overflow .3s,margin .3s;
+
+        &.hidden{
+            height:0;
+            opacity: 0;
+            overflow: hidden;
+            margin:0 !important;
+        }
+
+        cursor: pointer;
+        .dropDown{
+            position: absolute;
+            left:50%;
+            top:0;
+            height:25px;
+            width:100%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.08);
+            border-radius: 12.5px;
+            overflow: hidden;
+            transition: .15s .05s;
+            z-index:120;
+            &:hover{
+                background: white;
+                color:black;
+            }
+            &.clicked{
+                line-height:30px;
+                height:~"calc(30px * 6)";
+                background: white;
+                color:black;
+                border-radius: 2px;
+                .item{
+                    height:30px;
+                    transition: .15s;
+                    position: relative;
+                    &:hover{
+                        transform: scale(1.05) translateY(2px);
+                        &:after{
+                            width:100%;
+                            opacity: 1;
+                        }
+                    }
+                    
+                    &:after{
+                        content:'';
+                        position: absolute;
+                        left:0;
+                        top:0;
+                        width:220%;
+                        height:100%;
+                        z-index:-1;
+                        -webkit-mask:-webkit-linear-gradient(30deg,transparent 30%,red 100%);
+                        background: rgb(200,200,200);
+                        transition: .15s;
+                        opacity: 0;
+                    }
+                    /*
+                    &.ONHOLD:after{
+                        background:#e7b715;
+                    }
+                    &.WATCHING:after{
+                        background: #2db039;
+                    }
+                    &.PLANNED:after{
+                        background: #8f8f8f;
+                    }
+                    &.COMPLETED:after{
+                        background: #26448f;
+                    }
+                    &.DROPPED:after{
+                        background: #a12f31;
+                    }
+                    &.NONE:after{
+                        background: #ee664e;
+                    }*/
+                }
+            }
+        }
+        /*
+        .dropDown{
+            width:100%;
+            position: absolute;
+            top:0;
+            background: white;
+            color:black;
+            border-radius: 2px;
+            z-index:120;
+        }*/
+        margin-bottom:15px;
+    }
+    .episodeButtons{
+        @keyframes spawnEpisodeButtons{
+            0%{
+                height:0;
+                opacity: 0;
+                overflow: hidden;
+            }
+            100%{
+                height:25px;
+            }
+        }
+        &:not(.norefresh):not(.hidden){
+            animation:spawnEpisodeButtons .3s .1s;
+            animation-fill-mode: backwards;
+            height:25px;
+        }
+
+        transition: all .3s;
+
+        &.hidden{
+            height:0;
+            opacity: 0;
+            overflow: hidden;
+            margin:0;
+        }
+
+        margin-top:30px;
+        
+        width:100%;
+        display: flex;
+        .episodeSelector{
+            height:25px;
+            line-height:25px;
+            color:black;
+            &.decrease{
+                &:not(.inactive){
+                    cursor:pointer;
+                }
+                height:25px;
+                width:25px;
+                text-align:left;
+                &:not(.inactive):hover{
+                    &:before{
+                        opacity: 1;
+                    }
+                    &:after{
+                        background: black;
+                        left:-2px;
+                    }
+                }
+                &:before{
+                    content:'';
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    width:100%;
+                    height:100%;
+                    background: white;
+                    border-radius: 12.5px;
+                    opacity: 0.05;
+                    transition: .1s;
+                }
+                position: relative;
+                &:not(.inactive):after{
+                    content:'';
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    width:100%;
+                    height:100%;
+                    background: white;
+                    -webkit-mask:url(https://fonts.gstatic.com/s/i/materialicons/chevron_left/v1/24px.svg?download=true) center/contain no-repeat;
+                    transition: .1s;
+                }
+            }
+            &.setvalue{
+                position: relative;
+                flex-grow: 1;
+                text-align: center;
+                .inner{
+                    cursor: pointer;
+                    input{
+                        cursor: pointer;
+                        border:none;
+                        outline:none;
+                        line-height:25px;
+                        color:inherit;
+                        font-family:inherit;
+                        background: transparent;
+                        position: absolute;
+                        left:0;
+                        top:0;
+                        width:100%;
+                        height:100%;
+                        text-align: center;
+                        font-size: inherit;
+                    }
+                    &:hover{
+                        background: white;
+                        color:black;
+                    }
+                    position: absolute;
+                    left:50%;
+                    top:0;
+                    height:25px;
+                    width:100px;
+                    transform: translateX(-50%);
+                    background: rgba(255,255,255,0.05);
+                    color:white;
+                    border-radius: 12.5px;
+                    transition: .1s;
+                }
+                width:30px;
+            }
+            &.increase{
+                &:not(.inactive){
+                    cursor:pointer;
+                }
+                height:25px;
+                width:25px;
+                text-align:right;
+                &:not(.inactive):hover{
+                    &:before{
+                        opacity: 1;
+                    }
+                    &:after{
+                        background: black;
+                        left:2px;
+                    }
+                }
+                &:before{
+                    content:'';
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    width:100%;
+                    height:100%;
+                    background: white;
+                    border-radius: 12.5px;
+                    opacity: 0.05;
+                    transition: .1s;
+                }
+                position: relative;
+                &:not(.inactive):after{
+                    content:'';
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    width:100%;
+                    height:100%;
+                    background: white;
+                    -webkit-mask:url(https://fonts.gstatic.com/s/i/materialicons/chevron_right/v1/24px.svg?download=true) center/contain no-repeat;
+                    transition: .1s;
+                }
+            }
+        }
+    }
+}
+
+iframe{
+    z-index:40;
+    position: fixed;
+    left:0;
+    bottom:0;
+    &.full{
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        z-index:3390;
+        display: block;
+        border:none;
+    }
+}
+
+@keyframes loadingBar{
+    0%{
+        background-position-x: 0;
+    }
+    100%{
+        background-position-x: 4000px;
+    }
+}
+
+.loadingBar{
+    position: fixed;
+    left:0;
+    top:0;
+    height:5px;
+    background: white;
+    width:0vw;
+    pointer-events: none;
+    z-index:400;
+    transition: width .2s;
+    overflow: hidden;
+    &:after{
+        content:'';
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        background: repeating-linear-gradient(45deg,white 0px,rgb(240,240,240) 20px);
+        animation: loadingBar 50s linear infinite;
+        z-index:2;
+    }
+    &.done{
+        animation: loadingBarDone .6s;
+        opacity: 0;
+    }
+    &.half{
+        width:70vw;
+    }
+}
+
+@keyframes loadingBarDone{
+    0%{
+        width:70vw;
+        opacity: 1;
+    }
+    50%{
+        width:100vw;
+        opacity: 1;
+    }
+    100%{
+        width:100vw;
+        opacity: 0;
+    }
+}

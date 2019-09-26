@@ -1,0 +1,15 @@
+{
+  "compilerOptions":{
+    "target":"es5",
+    "module":"none",
+    "lib":["es2015","dom","dom.iterable"],
+    "jsx":"react",
+    "sourceMap":false,
+    "outFile":"./prod/main.js",
+    "removeComments":true,
+    "downlevelIteration":true,
+    "strict":true,
+    "moduleResolution":"node",
+    "esModuleInterop":true
+  }
+}
