@@ -16,6 +16,11 @@ Currently working on:
 * Anime characters / Staff
 * Producers / Studios
 
+## Screenshots
+![Landing](https://i.imgur.com/OboR0mw.jpg)
+![Profile](https://i.imgur.com/HxGcqcH.png)
+![Anime](https://i.imgur.com/NLaPAzc.jpg)
+
 ## How do I install this?
 
 1. Simply load the **prod** folder as an unpacked extension.
