@@ -1,3 +1,5 @@
+/* Created by ThuverX, please check the license before editing */
+
 function reloadCSS(){
     fetch(chrome.runtime.getURL('default.css'))
         .then((response) => response.text())
