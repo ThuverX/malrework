@@ -157,6 +157,22 @@ const malRenewd = new class MalRenewd extends EventEmmiter{
     }
 
     scraper = {
+        getUserData:() => {
+            if(!this.frameDoc) return null
+
+            let final:any = {}
+
+            let headerProfileHolder:HTMLElement | null = this.frameDoc!.querySelector('div.header-menu-unit.header-profile.pl0')
+
+            if(!headerProfileHolder) return null
+            
+            let dataHolder:HTMLElement | null = headerProfileHolder!.children[0] as HTMLElement
+
+            final.username = dataHolder!.getAttribute('title')
+            final.imageUrl = dataHolder!.style.backgroundImage!.match(/url\(\"(.*?)\"\)/)![1]
+
+            return final
+        },
         profilepage:{
             getUserData:() => {
                 if(!this.frameDoc) return null

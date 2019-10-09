@@ -180,6 +180,18 @@ var malRenewd = new (function (_super) {
             return malConnection;
         }())(_this);
         _this.scraper = {
+            getUserData: function () {
+                if (!_this.frameDoc)
+                    return null;
+                var final = {};
+                var headerProfileHolder = _this.frameDoc.querySelector('div.header-menu-unit.header-profile.pl0');
+                if (!headerProfileHolder)
+                    return null;
+                var dataHolder = headerProfileHolder.children[0];
+                final.username = dataHolder.getAttribute('title');
+                final.imageUrl = dataHolder.style.backgroundImage.match(/url\(\"(.*?)\"\)/)[1];
+                return final;
+            },
             profilepage: {
                 getUserData: function () {
                     if (!_this.frameDoc)
@@ -773,21 +785,29 @@ var FrontPage = (function (_super) {
     function FrontPage(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
-            data: null
+            data: null,
+            userData: null
         };
+        malRenewd.on('iframe_load_complete', function () { return _this.setState({ userData: malRenewd.scraper.getUserData() }); });
         return _this;
     }
     FrontPage.prototype.componentDidMount = function () {
-        this.setState({ data: {
+        this.setState({
+            data: {
                 suggestions: malRenewd.scraper.frontpage.getSuggestions(),
                 newAnime: malRenewd.scraper.frontpage.extractDataFromList('.widget.seasonal')
-            } });
+            },
+            userData: malRenewd.scraper.getUserData()
+        });
     };
     FrontPage.prototype.render = function () {
         return (React.createElement("div", { className: "page frontpage" },
-            React.createElement("div", { className: "welcomeWrapper" },
-                React.createElement("div", { className: "message" }, "Welcome back ThuverX"),
-                this.state.data && this.state.data.suggestions && React.createElement(CardLister, { locked: this.props.locked, cutoff: true, title: "Here are some anime suggestion", floatRight: true, items: this.state.data.suggestions.map(function (s) { return { url: s.path, imageUrl: s.image, title: s.title }; }), displayCount: 6 })),
+            this.state.userData ?
+                React.createElement("div", { className: "welcomeWrapper" },
+                    React.createElement("div", { className: "message" },
+                        "Welcome back ",
+                        this.state.userData.username),
+                    this.state.data && this.state.data.suggestions && React.createElement(CardLister, { locked: this.props.locked, cutoff: true, title: "Here are some anime suggestion", floatRight: true, items: this.state.data.suggestions.map(function (s) { return { url: s.path, imageUrl: s.image, title: s.title }; }), displayCount: 6 })) : "",
             React.createElement("div", { className: "newAnime" },
                 React.createElement("div", { className: "message" }, "Summer Anime 2019"),
                 this.state.data && this.state.data.newAnime && React.createElement(CardLister, { locked: this.props.locked, cutoff: true, floatRight: false, items: this.state.data.newAnime, displayCount: 6 }))));
@@ -1007,15 +1027,26 @@ var TopBarItem = (function (_super) {
 var TopBar = (function (_super) {
     __extends(TopBar, _super);
     function TopBar(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        _this.state = {
+            userData: null
+        };
+        malRenewd.on('iframe_load_complete', function () { return _this.setState({ userData: malRenewd.scraper.getUserData() }); });
+        return _this;
     }
+    TopBar.prototype.componentDidMount = function () {
+        this.setState({ userData: malRenewd.scraper.getUserData() });
+    };
+    TopBar.prototype.gotoUserPage = function () {
+        malRenewd.navigate("https://myanimelist.net/profile/" + this.state.userData.username);
+    };
     TopBar.prototype.render = function () {
         return (React.createElement("nav", null,
             React.createElement("div", { className: "home", onClick: function () { return malRenewd.navigate('https://myanimelist.net/'); } }),
             this.props.elements.map(function (item, i) { return React.createElement(TopBarItem, { floatRight: item.floatRight, action: item.action, name: item.name, key: i }); }),
-            React.createElement("div", { className: "button username right popoutButton" },
-                React.createElement("a", { id: "username" }, "ThuverX"),
-                React.createElement("img", { src: "https://cdn.myanimelist.net/images/userimages/6922875.jpg" }))));
+            React.createElement("div", { className: "button username right popoutButton", onClick: this.gotoUserPage.bind(this) },
+                React.createElement("a", { id: "username" }, this.state.userData ? this.state.userData.username : "Login"),
+                this.state.userData ? React.createElement("img", { src: this.state.userData.imageUrl }) : "")));
     };
     return TopBar;
 }(React.Component));

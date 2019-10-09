@@ -5,7 +5,7 @@ interface iTopBarElement {
 interface iTopBarItemElement {
     name:String,
     action?:Function,
-    floatRight?:Boolean
+    floatRight?:Boolean,
 }
 
 class TopBarItem extends React.Component<iTopBarItemElement> {
@@ -16,10 +16,24 @@ class TopBarItem extends React.Component<iTopBarItemElement> {
     }
 }
 
-class TopBar extends React.Component<iTopBarElement> {
+class TopBar extends React.Component<iTopBarElement,{userData:any}> {
 
     constructor(props:iTopBarElement){
         super(props)
+
+        this.state = {
+            userData:null
+        }
+
+        malRenewd.on('iframe_load_complete',() => this.setState({userData:malRenewd.scraper.getUserData()}))
+    }
+
+    componentDidMount(){
+        this.setState({userData:malRenewd.scraper.getUserData()})
+    }
+
+    gotoUserPage(){
+        malRenewd.navigate(`https://myanimelist.net/profile/${this.state.userData.username}`)
     }
 
     render(){
@@ -27,9 +41,9 @@ class TopBar extends React.Component<iTopBarElement> {
             <nav>
                 <div className="home" onClick={() => malRenewd.navigate('https://myanimelist.net/')}></div>
                 {this.props.elements.map((item,i) => <TopBarItem floatRight={item.floatRight} action={item.action} name={item.name} key={i} />)}
-                <div className="button username right popoutButton">
-                    <a id="username">ThuverX</a>
-                    <img src="https://cdn.myanimelist.net/images/userimages/6922875.jpg"/>
+                <div className="button username right popoutButton" onClick={this.gotoUserPage.bind(this)}>
+                    <a id="username">{this.state.userData ? this.state.userData.username : "Login"}</a>
+                    {this.state.userData ? <img src={this.state.userData.imageUrl}/> : ""}
                 </div>
             </nav>
         )
