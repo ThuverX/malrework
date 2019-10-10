@@ -816,32 +816,34 @@ var FrontPage = (function (_super) {
         return _this;
     }
     FrontPage.prototype.componentDidMount = function () {
+        var userData = malRenewd.scraper.getUserData();
         this.setState({
             data: {
                 suggestions: malRenewd.scraper.frontpage.getAnimeSuggestions(),
                 widgets: [
                     __assign({ subtitle: 'What\'s hot this season' }, malRenewd.scraper.frontpage.extractDataFromList('.widget.seasonal')),
-                    { subtitle: 'How about some reading', title: "Manga Suggestions", items: malRenewd.scraper.frontpage.getMangaSuggestions().map(function (s) { return { url: s.path, imageUrl: s.image, title: s.title }; }) }
+                    userData && { subtitle: 'How about some reading', title: "Manga Suggestions", items: malRenewd.scraper.frontpage.getMangaSuggestions().map(function (s) { return { url: s.path, imageUrl: s.image, title: s.title }; }) }
                 ]
             },
-            userData: malRenewd.scraper.getUserData()
+            userData: userData
         });
     };
     FrontPage.prototype.render = function () {
         var _this = this;
         return (React.createElement("div", { className: "page frontpage" },
             !this.state.userData ?
-                React.createElement("div", { className: "landing" }) : '',
+                React.createElement("div", { className: "landing" },
+                    React.createElement("div", { className: "header" })) : '',
             this.state.userData ?
                 React.createElement("div", { className: "welcomeWrapper" },
                     React.createElement("div", { className: "message" },
                         "Welcome back ",
                         this.state.userData.username),
                     this.state.data && this.state.data.suggestions && React.createElement(CardLister, { locked: this.props.locked, cutoff: true, title: "Here are some anime suggestion", floatRight: true, items: this.state.data.suggestions.map(function (s) { return { url: s.path, imageUrl: s.image, title: s.title }; }), displayCount: 6 })) : "",
-            React.createElement("div", { className: "newAnime" }, this.state.data && this.state.data.widgets.map(function (i, x) { return [
+            React.createElement("div", { className: "newAnime" }, this.state.data && this.state.data.widgets.map(function (i, x) { return i ? [
                 React.createElement("div", { className: "message" + (x % 2 != 0 ? ' right' : '') }, i.title),
                 React.createElement(CardLister, { key: x, locked: _this.props.locked, cutoff: true, title: i.subtitle || null, floatRight: x % 2 != 0, items: i.items, displayCount: 6 })
-            ]; }))));
+            ] : ''; }))));
     };
     return FrontPage;
 }(React.Component));
@@ -1049,9 +1051,10 @@ var TopBarItem = (function (_super) {
     function TopBarItem() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    TopBarItem.prototype.openContext = function () {
+    };
     TopBarItem.prototype.render = function () {
-        var _this = this;
-        return (React.createElement("div", { className: "button popoutButton" + (this.props.floatRight ? " right" : ""), onClick: function (event) { return _this.props.action(event); } }, this.props.name));
+        return (React.createElement("div", { className: "button popoutButton" + (this.props.floatRight ? " right" : ""), onClick: this.openContext.bind(this) }, this.props.name));
     };
     return TopBarItem;
 }(React.Component));
@@ -1069,7 +1072,8 @@ var TopBar = (function (_super) {
         this.setState({ userData: malRenewd.scraper.getUserData() });
     };
     TopBar.prototype.gotoUserPage = function () {
-        malRenewd.navigate("https://myanimelist.net/profile/" + this.state.userData.username);
+        if (this.state.userData)
+            malRenewd.navigate("https://myanimelist.net/profile/" + this.state.userData.username);
     };
     TopBar.prototype.render = function () {
         return (React.createElement("nav", null,

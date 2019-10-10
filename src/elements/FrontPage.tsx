@@ -12,15 +12,16 @@ class FrontPage extends React.Component<iPage,{data:any,userData:any}> {
     }
 
     componentDidMount(){
+        let userData:any = malRenewd.scraper.getUserData()
         this.setState({
             data:{
                 suggestions:malRenewd.scraper.frontpage.getAnimeSuggestions(),
                 widgets:[
                     {subtitle:'What\'s hot this season',...malRenewd.scraper.frontpage.extractDataFromList('.widget.seasonal')},
-                    {subtitle:'How about some reading',title:"Manga Suggestions",items:malRenewd.scraper.frontpage.getMangaSuggestions().map((s:any) => {return {url:s.path,imageUrl:s.image,title:s.title}})}
+                    userData && {subtitle:'How about some reading',title:"Manga Suggestions",items:malRenewd.scraper.frontpage.getMangaSuggestions().map((s:any) => {return {url:s.path,imageUrl:s.image,title:s.title}})}
                 ]
             },
-            userData:malRenewd.scraper.getUserData()
+            userData
         })
     }
 
@@ -30,7 +31,7 @@ class FrontPage extends React.Component<iPage,{data:any,userData:any}> {
                 {
                     !this.state.userData?
                     <div className="landing">
-
+                        <div className="header"></div>
                     </div>:''
                 }
                 {this.state.userData ? 
@@ -42,11 +43,11 @@ class FrontPage extends React.Component<iPage,{data:any,userData:any}> {
                 </div>:""}
                 <div className="newAnime">
                 {
-                    this.state.data && this.state.data.widgets.map((i:any,x:number) => [
+                    this.state.data && this.state.data.widgets.map((i:any,x:number) => i?[
                         <div className={"message" + (x % 2 != 0?' right':'')}>{i.title}</div>,
                         <CardLister key={x} locked={this.props.locked} cutoff={true} title={i.subtitle||null} floatRight={x % 2 != 0} items={
                             i.items
-                        } displayCount={6}/>]
+                        } displayCount={6}/>]:''
                     )
                 }
                 </div>

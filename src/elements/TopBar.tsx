@@ -9,9 +9,14 @@ interface iTopBarItemElement {
 }
 
 class TopBarItem extends React.Component<iTopBarItemElement> {
+
+    openContext(){
+
+    }
+
     render(){
         return (
-            <div className={"button popoutButton" + (this.props.floatRight?" right":"")} onClick={(event) => this.props.action!(event)}>{this.props.name}</div>
+            <div className={"button popoutButton" + (this.props.floatRight?" right":"")} onClick={this.openContext.bind(this)}>{this.props.name}</div>
         )
     }
 }
@@ -33,7 +38,7 @@ class TopBar extends React.Component<iTopBarElement,{userData:any}> {
     }
 
     gotoUserPage(){
-        malRenewd.navigate(`https://myanimelist.net/profile/${this.state.userData.username}`)
+        if(this.state.userData) malRenewd.navigate(`https://myanimelist.net/profile/${this.state.userData.username}`)
     }
 
     render(){
