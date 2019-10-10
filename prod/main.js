@@ -271,10 +271,17 @@ var malRenewd = new (function (_super) {
                 }
             },
             frontpage: {
-                getSuggestions: function () {
+                getAnimeSuggestions: function () {
                     if (!_this.frameDoc)
                         return null;
                     var el = _this.frameDoc.getElementById("v-auto-recommendation-personalized_anime");
+                    if (el)
+                        return JSON.parse(el.getAttribute("data-initial-data") || '[]');
+                },
+                getMangaSuggestions: function () {
+                    if (!_this.frameDoc)
+                        return null;
+                    var el = _this.frameDoc.getElementById("v-auto-recommendation-personalized_manga");
                     if (el)
                         return JSON.parse(el.getAttribute("data-initial-data") || '[]');
                 },
@@ -786,6 +793,17 @@ var CardLister = (function (_super) {
     };
     return CardLister;
 }(React.Component));
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var FrontPage = (function (_super) {
     __extends(FrontPage, _super);
     function FrontPage(props) {
@@ -800,23 +818,30 @@ var FrontPage = (function (_super) {
     FrontPage.prototype.componentDidMount = function () {
         this.setState({
             data: {
-                suggestions: malRenewd.scraper.frontpage.getSuggestions(),
-                newAnime: malRenewd.scraper.frontpage.extractDataFromList('.widget.seasonal')
+                suggestions: malRenewd.scraper.frontpage.getAnimeSuggestions(),
+                widgets: [
+                    __assign({ subtitle: 'What\'s hot this season' }, malRenewd.scraper.frontpage.extractDataFromList('.widget.seasonal')),
+                    { subtitle: 'How about some reading', title: "Manga Suggestions", items: malRenewd.scraper.frontpage.getMangaSuggestions().map(function (s) { return { url: s.path, imageUrl: s.image, title: s.title }; }) }
+                ]
             },
             userData: malRenewd.scraper.getUserData()
         });
     };
     FrontPage.prototype.render = function () {
+        var _this = this;
         return (React.createElement("div", { className: "page frontpage" },
+            !this.state.userData ?
+                React.createElement("div", { className: "landing" }) : '',
             this.state.userData ?
                 React.createElement("div", { className: "welcomeWrapper" },
                     React.createElement("div", { className: "message" },
                         "Welcome back ",
                         this.state.userData.username),
                     this.state.data && this.state.data.suggestions && React.createElement(CardLister, { locked: this.props.locked, cutoff: true, title: "Here are some anime suggestion", floatRight: true, items: this.state.data.suggestions.map(function (s) { return { url: s.path, imageUrl: s.image, title: s.title }; }), displayCount: 6 })) : "",
-            React.createElement("div", { className: "newAnime" },
-                React.createElement("div", { className: "message" }, this.state.data && this.state.data.newAnime && this.state.data.newAnime.title),
-                this.state.data && this.state.data.newAnime && React.createElement(CardLister, { locked: this.props.locked, cutoff: true, floatRight: false, items: this.state.data.newAnime.items, displayCount: 6 }))));
+            React.createElement("div", { className: "newAnime" }, this.state.data && this.state.data.widgets.map(function (i, x) { return [
+                React.createElement("div", { className: "message" + (x % 2 != 0 ? ' right' : '') }, i.title),
+                React.createElement(CardLister, { key: x, locked: _this.props.locked, cutoff: true, title: i.subtitle || null, floatRight: x % 2 != 0, items: i.items, displayCount: 6 })
+            ]; }))));
     };
     return FrontPage;
 }(React.Component));

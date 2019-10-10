@@ -273,9 +273,14 @@ const malRenewd = new class MalRenewd extends EventEmmiter{
             }
         },
         frontpage:{
-            getSuggestions:() => {
+            getAnimeSuggestions:() => {
                 if(!this.frameDoc) return null
                 let el = this.frameDoc!.getElementById("v-auto-recommendation-personalized_anime")
+                if(el) return JSON.parse(el.getAttribute("data-initial-data") || '[]')
+            },
+            getMangaSuggestions:() => {
+                if(!this.frameDoc) return null
+                let el = this.frameDoc!.getElementById("v-auto-recommendation-personalized_manga")
                 if(el) return JSON.parse(el.getAttribute("data-initial-data") || '[]')
             },
             extractDataFromList:(selector:string) => {

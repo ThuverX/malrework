@@ -589,11 +589,15 @@ nav > .button:hover:after {
   position: relative;
   top: 1%;
   left: 5%;
+  width: 90%;
   animation: slideFromRight 0.2s cubic-bezier(1, 0, 0, 1);
 }
 .newAnime .message {
   float: left;
   font-size: 50px;
+}
+.newAnime .message.right {
+  float: right !important;
 }
 .relatedAnime {
   margin-top: 20px;
