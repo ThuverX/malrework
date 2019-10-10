@@ -91,7 +91,7 @@ class ProfilePage extends React.Component<iPage,{data:any}> {
                                     <div className={"indicator" + (isOnline?' online':' offline')}></div> {(isOnline?'Online':'Offline')} - Joined on {this.state.data!.statusData.joinedDate}
                                 </div>
                             </div>
-                            <div className="synopsis">No biography yet. Write it now.</div> 
+                            <div className="synopsis">No biography yet.</div> 
                         </div>
                         <div className="data">
                             <AnimeStatisticsStack type="Anime" boxId="animeData" title="Anime Statistics" underTitle={this.state.data!.animeExtraData} data={this.state.data!.animeStackData}/>

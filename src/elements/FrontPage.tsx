@@ -32,9 +32,9 @@ class FrontPage extends React.Component<iPage,{data:any,userData:any}> {
                     } displayCount={6}/>}
                 </div>:""}
                 <div className="newAnime">
-                    <div className="message">Summer Anime 2019</div>
+                    <div className="message">{this.state.data && this.state.data.newAnime && this.state.data.newAnime.title}</div>
                     {this.state.data && this.state.data.newAnime && <CardLister locked={this.props.locked} cutoff={true} floatRight={false} items={
-                        this.state.data.newAnime
+                        this.state.data.newAnime.items
                     } displayCount={6}/>}
                 </div>
             </div>

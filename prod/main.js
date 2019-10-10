@@ -283,7 +283,13 @@ var malRenewd = new (function (_super) {
                     if (!_this.frameDoc)
                         return null;
                     var holder = _this.frameDoc.querySelector(selector + " .widget-slide");
-                    var final = [];
+                    var final = {
+                        items: [],
+                        title: ""
+                    };
+                    var header = _this.frameDoc.querySelector(selector + ' .widget-header');
+                    if (header)
+                        final.title = [].reduce.call(header.childNodes, function (a, b) { return (a + (b.nodeType === 3 ? b.textContent : '')); }, '');
                     try {
                         for (var _b = __values(holder.children), _c = _b.next(); !_c.done; _c = _b.next()) {
                             var child = _c.value;
@@ -291,7 +297,7 @@ var malRenewd = new (function (_super) {
                             var data = child.children[0].querySelector('img');
                             var imageUrl = data.getAttribute('data-src') || "";
                             var title = data.getAttribute('alt') || "";
-                            final.push({
+                            final.items.push({
                                 url: href,
                                 imageUrl: imageUrl,
                                 title: title
@@ -809,8 +815,8 @@ var FrontPage = (function (_super) {
                         this.state.userData.username),
                     this.state.data && this.state.data.suggestions && React.createElement(CardLister, { locked: this.props.locked, cutoff: true, title: "Here are some anime suggestion", floatRight: true, items: this.state.data.suggestions.map(function (s) { return { url: s.path, imageUrl: s.image, title: s.title }; }), displayCount: 6 })) : "",
             React.createElement("div", { className: "newAnime" },
-                React.createElement("div", { className: "message" }, "Summer Anime 2019"),
-                this.state.data && this.state.data.newAnime && React.createElement(CardLister, { locked: this.props.locked, cutoff: true, floatRight: false, items: this.state.data.newAnime, displayCount: 6 }))));
+                React.createElement("div", { className: "message" }, this.state.data && this.state.data.newAnime && this.state.data.newAnime.title),
+                this.state.data && this.state.data.newAnime && React.createElement(CardLister, { locked: this.props.locked, cutoff: true, floatRight: false, items: this.state.data.newAnime.items, displayCount: 6 }))));
     };
     return FrontPage;
 }(React.Component));
@@ -1006,7 +1012,7 @@ var ProfilePage = (function (_super) {
                                 (isOnline ? 'Online' : 'Offline'),
                                 " - Joined on ",
                                 this.state.data.statusData.joinedDate)),
-                        React.createElement("div", { className: "synopsis" }, "No biography yet. Write it now.")),
+                        React.createElement("div", { className: "synopsis" }, "No biography yet.")),
                     React.createElement("div", { className: "data" },
                         React.createElement(AnimeStatisticsStack, { type: "Anime", boxId: "animeData", title: "Anime Statistics", underTitle: this.state.data.animeExtraData, data: this.state.data.animeStackData }),
                         React.createElement(AnimeStatisticsStack, { type: "Manga", boxId: "mangaData", title: "Manga Statistics", underTitle: this.state.data.mangaExtraData, data: this.state.data.mangaStackData }))))));

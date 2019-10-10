@@ -166,7 +166,7 @@ const malRenewd = new class MalRenewd extends EventEmmiter{
 
             if(!headerProfileHolder) return null
             
-            let dataHolder:HTMLElement | null = headerProfileHolder!.children[0] as HTMLElement
+            let dataHolder:HTMLElement | null = <HTMLElement>headerProfileHolder!.children[0] 
 
             final.username = dataHolder!.getAttribute('title')
             final.imageUrl = dataHolder!.style.backgroundImage!.match(/url\(\"(.*?)\"\)/)![1]
@@ -283,7 +283,15 @@ const malRenewd = new class MalRenewd extends EventEmmiter{
 
                 let holder = this.frameDoc!.querySelector(selector + " .widget-slide")
 
-                let final:any = []
+                let final:any = {
+                    items:[],
+                    title:""
+                }
+
+                let header = this.frameDoc!.querySelector(selector + ' .widget-header')
+
+                if(header) 
+                    final.title = [].reduce.call(header.childNodes, (a:any, b:ChildNode) => (a + (b.nodeType === 3 ? b.textContent : '')), '')
 
                 for(let child of holder!.children) {
                     let href:String = (<HTMLAreaElement>child.children[0]).href
@@ -294,7 +302,7 @@ const malRenewd = new class MalRenewd extends EventEmmiter{
 
                     let title:String = data!.getAttribute('alt') || ""
 
-                    final.push({
+                    final.items.push({
                         url:href,
                         imageUrl,
                         title
